@@ -1,0 +1,8 @@
+# Virtual Hand Mouse — Dependencias
+# Instalar con: pip install -r requirements.txt
+
+mediapipe>=0.10.9
+opencv-python>=4.9.0
+pyautogui>=0.9.54
+numpy>=1.26.0
+pytest>=8.0.0

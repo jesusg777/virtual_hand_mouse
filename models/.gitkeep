@@ -1,0 +1,15 @@
+# Este directorio contiene los modelos de MediaPipe Tasks.
+# El archivo del modelo NO está versionado (ver .gitignore).
+#
+# Para descargar el modelo requerido, ejecuta:
+#
+#   python -c "
+#   import urllib.request, pathlib
+#   url = 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task'
+#   pathlib.Path('models').mkdir(exist_ok=True)
+#   urllib.request.urlretrieve(url, 'models/hand_landmarker.task')
+#   print('Modelo descargado correctamente.')
+#   "
+#
+# O visita directamente:
+# https://developers.google.com/mediapipe/solutions/vision/hand_landmarker#models

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "virtual-hand-mouse"
+version = "1.0.0"
+description = "Mouse virtual controlado por gestos de mano usando MediaPipe y OpenCV"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+dependencies = [
+    "mediapipe>=0.10.9",
+    "opencv-python>=4.9.0",
+    "pyautogui>=0.9.54",
+    "numpy>=1.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+]
+
+[project.scripts]
+virtual-hand-mouse = "main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*", "controllers*", "ui*", "utils*"]
