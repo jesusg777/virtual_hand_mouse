@@ -146,4 +146,4 @@ Los tests cubren `smoother.py` y `mapper.py` con matemática pura, sin necesidad
 
 ## Licencia
 
-MIT — Libre para uso personal, educativo y comercial.
+Hecho para uso personal, educativo y comercial.
