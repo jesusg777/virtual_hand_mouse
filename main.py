@@ -87,7 +87,7 @@ def main() -> None:
 
             if landmarks is not None:
                 # 3. Extraer coordenadas del dedo índice (landmark 8)
-                raw_x, raw_y = landmarks.get_2d(LandmarkIndex.INDEX_FINGER_TIP)
+                raw_x, raw_y = landmarks.get_2d(LandmarkIndex.INDEX_FINGER_MCP)
 
                 # 4. Suavizar
                 smooth_x, smooth_y = smoother.update(raw_x, raw_y)
@@ -103,7 +103,7 @@ def main() -> None:
                 wrist  = landmarks.get_2d(LandmarkIndex.WRIST)
                 mcp    = landmarks.get_2d(LandmarkIndex.INDEX_FINGER_MCP)
                 hand_size = _euclidean(wrist, mcp) or 1e-6
-                print(f"idx-thumb: {_euclidean(index, thumb)/hand_size:.3f}  |  mid-thumb: {_euclidean(middle, thumb)/hand_size:.3f}")
+                #print(f"idx-thumb: {_euclidean(index, thumb)/hand_size:.3f}  |  mid-thumb: {_euclidean(middle, thumb)/hand_size:.3f}")
                 gesture = engine.update(landmarks)
 
                 # 7. Actuar sobre el SO
