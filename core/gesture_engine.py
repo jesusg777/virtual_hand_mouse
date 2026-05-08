@@ -144,28 +144,21 @@ class GestureEngine:
         pinky_up:  bool,
     ) -> GestureState:
         """Evalúa transiciones de estado con histéresis."""
-
+    
         # Puño cerrado → PAUSE (ningún dedo levantado)
         if not index_up and not middle_up and not ring_up and not pinky_up:
             return GestureState.PAUSE
-
-        # SCROLL: índice Y medio levantados, sin pinza
-        if index_up and middle_up and not ring_up and not pinky_up:
-            if d_index_thumb > GESTURE.click_threshold_exit:
-                return GestureState.SCROLL
-
-        # LEFT_CLICK: pinza índice–pulgar con histéresis
+    
+        # LEFT_CLICK primero — tiene prioridad sobre todo
         if self._state == GestureState.LEFT_CLICK:
-            # Ya estaba en clic: necesita superar threshold_EXIT para salir
             if d_index_thumb > GESTURE.click_threshold_exit:
                 return GestureState.IDLE
             return GestureState.LEFT_CLICK
         else:
-            # No estaba en clic: necesita bajar de threshold_ENTER para entrar
             if d_index_thumb < GESTURE.click_threshold_enter:
                 return GestureState.LEFT_CLICK
-
-        # RIGHT_CLICK: pinza medio–pulgar con histéresis
+    
+        # RIGHT_CLICK
         if self._state == GestureState.RIGHT_CLICK:
             if d_middle_thumb > GESTURE.right_click_threshold_exit:
                 return GestureState.IDLE
@@ -173,9 +166,13 @@ class GestureEngine:
         else:
             if d_middle_thumb < GESTURE.right_click_threshold_enter:
                 return GestureState.RIGHT_CLICK
-
+    
+        # SCROLL al final — solo si no hay pinza activa
+        if index_up and middle_up and not ring_up and not pinky_up:
+            if d_index_thumb > GESTURE.click_threshold_exit:
+                return GestureState.SCROLL
+    
         return GestureState.IDLE
-
     # Posición Y previa para calcular delta de scroll
     _prev_scroll_y: float = 0.5
 

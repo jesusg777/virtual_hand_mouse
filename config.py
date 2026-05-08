@@ -78,13 +78,13 @@ class GestureConfig:
 
     Distancias expresadas como fracción del ancho del frame (0.0 – 1.0).
     """
-    click_threshold_enter:  float = 0.040   # Activar clic
-    click_threshold_exit:   float = 0.060   # Desactivar clic
+    click_threshold_enter:  float = 0.200   # Activar clic
+    click_threshold_exit:   float = 0.600   # Desactivar clic
 
-    right_click_threshold_enter: float = 0.040
-    right_click_threshold_exit:  float = 0.060
+    right_click_threshold_enter: float = 0.200
+    right_click_threshold_exit:  float = 0.600
 
-    scroll_speed:           int   = 30      # Píxeles por frame en modo scroll
+    scroll_speed:           int   = 30     # Píxeles por frame en modo scroll
 
 
 # ---------------------------------------------------------------------------

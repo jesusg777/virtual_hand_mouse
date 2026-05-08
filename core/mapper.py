@@ -76,7 +76,7 @@ class CoordinateMapper:
             (screen_x, screen_y) en píxeles, clampeados al tamaño de pantalla.
         """
         # Invertir X: el frame de la cámara está espejado
-        flipped_x = 1.0 - norm_x
+        flipped_x = norm_x
 
         screen_x = int(np.interp(
             flipped_x,

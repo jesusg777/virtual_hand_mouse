@@ -28,7 +28,7 @@ from config import CAMERA, OVERLAY
 from core.detector      import HandDetector, LandmarkIndex
 from core.smoother      import MovingAverageSmoother
 from core.mapper        import CoordinateMapper
-from core.gesture_engine import GestureEngine, GestureState
+from core.gesture_engine import GestureEngine, GestureState, _euclidean
 from controllers.mouse_controller import MouseController
 from ui.overlay         import Overlay
 from utils.fps_counter  import FPSCounter
@@ -96,6 +96,14 @@ def main() -> None:
                 screen_x, screen_y = mapper.map(smooth_x, smooth_y)
 
                 # 6. Reconocer gesto
+                # DEBUG TEMPORAL — eliminar después de calibrar
+                thumb  = landmarks.get_2d(LandmarkIndex.THUMB_TIP)
+                index  = landmarks.get_2d(LandmarkIndex.INDEX_FINGER_TIP)
+                middle = landmarks.get_2d(LandmarkIndex.MIDDLE_FINGER_TIP)
+                wrist  = landmarks.get_2d(LandmarkIndex.WRIST)
+                mcp    = landmarks.get_2d(LandmarkIndex.INDEX_FINGER_MCP)
+                hand_size = _euclidean(wrist, mcp) or 1e-6
+                print(f"idx-thumb: {_euclidean(index, thumb)/hand_size:.3f}  |  mid-thumb: {_euclidean(middle, thumb)/hand_size:.3f}")
                 gesture = engine.update(landmarks)
 
                 # 7. Actuar sobre el SO
